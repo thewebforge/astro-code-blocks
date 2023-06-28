@@ -1,0 +1,17 @@
+{
+  "include": ["src/**/*", "virtual.d.ts"],
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "ESNext",
+    "outDir": "dist",
+    "target": "ESNext",
+    "declaration": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "types": ["astro/client"]
+  },
+  "jsx": "react-jsx"
+}
