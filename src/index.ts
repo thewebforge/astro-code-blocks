@@ -351,14 +351,13 @@ export default function CodeBlocksIntegration(
 ): AstroIntegration[] {
   const parsedConfig = CodeBlocksConfigSchema.safeParse(opts);
 
-  if (!parsedConfig.success) {
+  if (opts && !parsedConfig.success) {
     throw new Error(
       "Invalid config passed to codeblocks integration\n" +
         parsedConfig.error.issues.map((i) => i.message).join("\n")
     );
   }
-
-  const userConfig = parsedConfig.data;
+  const userConfig = opts ? parsedConfig.data : {};
 
   const CodeBlocks: AstroIntegration = {
     name: PKG_NAME,
