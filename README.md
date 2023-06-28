@@ -44,15 +44,27 @@ import codeblocks from "@thewebforge/astro-code-blocks";
 
 export default defineConfig({
   integrations: [
-    codeblocks({
-      copyButtonTitle: 'Copy',
-      copyButtonTooltip: 'Copied to clipboard',
-    }),
+    codeblocks(),
   ],
 });
 ```
 > **Warning**
 > If you alreday installed Astro MDX integration. Or another integration that uses MDX, you need to make sure that the codeblocks integration comes before MDX in the integrations array. Otherwise, it will not work.
+
+### Config
+
+You can configure the code blocks integration by passing an object to the codeblocks function.
+
+**astro.config.mjs**
+```js
+integrations: [
+    codeblocks({
+        // Copy Button Options
+        copyButtonTitle: 'Copy',
+        copyButtonTooltip: 'Copied to clipboard',
+    }),
+  ],
+```
 
  ## Usage
 
@@ -69,5 +81,52 @@ You can add a title to your code block by adding a `title` prop to the code bloc
 ```
 > **Note**
 > The title prop is optional. If you don't add it, the code block will not have a title.
+
+### Highlight lines
+
+You can highlight lines in your code block by adding a prop to the code blocks as a list of 
+comma separated numbers in curly brackets. For example:
+- `{1}` will highlight line 1
+- `{1,3}` will highlight lines 1 and 3
+- `{2-5, 7}` will highlight lines 1 to 5(not included) and 7
+
+```mdx
+    ```js {1,3,5}
+        console.log('Hello World')
+        console.log('Hello World')
+        console.log('Hello World')
+        console.log('Hello World')
+        console.log('Hello World')
+    ```
+```
+
+### Highlight strings
+
+You can highlight strings in your code block by adding a prop to the code blocks as a regular expression. The following example will highlight all occurences of "astro":
+
+- `/astro/` will highlight all occurences of "astro"
+- `/\w*$/` will highlight the last word of each line
+
+```sh /astro/
+# Using NPM
+npx astro add @thewebforge/astro-code-blocks
+# Using Yarn
+yarn astro add @thewebforge/astro-code-blocks
+# Using PNPM
+pnpm astro add @thewebforge/astro-code-blocks
+```
+
+### Insertions and Deletions
+
+You can highlight insertions and deletions in your code block by adding `ins` and/or `del` props to the code blocks as a list of lines in curly brackets. For example:
+
+```sh ins={3,4} del={5,6}
+# Using NPM
+npx astro add @thewebforge/astro-code-blocks
+# Using Yarn
+yarn astro add @thewebforge/astro-code-blocks
+# Using PNPM
+pnpm astro add @thewebforge/astro-code-blocks
+```
 
 
