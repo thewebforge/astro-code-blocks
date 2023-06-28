@@ -1,7 +1,7 @@
 {
   "name": "@thewebforge/astro-code-blocks",
   "description": "Beautiful code blocks for your astro site",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "types": "./dist/index.d.ts",
   "author": "C\u00e9dric Bontems <cedric@thewebforge.dev> (https://thewebforge.dev/)",
