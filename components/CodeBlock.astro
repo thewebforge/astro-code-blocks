@@ -18,8 +18,8 @@ export type Props = {
 	inlineMarkings?: string;
 }
 
-const copyButtonTitle: string = config.copyButtonTitle;
-const copyButtonTooltip: string =  config.copyButtonTooltip
+const copyButtonTitle: string = config.copyButtonTitle ?? 'Copy';
+const copyButtonTooltip: string =  config.copyButtonTooltip ?? 'Copied!';
 
 const {
 	lang = '',

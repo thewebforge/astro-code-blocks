@@ -5,12 +5,12 @@ const UserConfigSchema = z.object({
     .string()
     .describe(
       "Title of the copy button."
-    ),
+    ).optional(),
     copyButtonTooltip: z
     .string()
     .describe(
         "Tooltip of the copy button. Will appear once the content is copied to the clipboard."
-    ),
+    ).optional(),
 });
 
 export const CodeBlocksConfigSchema = UserConfigSchema.strict();
