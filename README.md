@@ -51,8 +51,23 @@ export default defineConfig({
   ],
 });
 ```
-> **Note:** If you alreday installed Astro MDX integration. Or another integration that uses MDX, you need to make sure that the codeblocks integration comes before MDX in the integrations array. Otherwise, it will not work.
+> **Warning**
+> If you alreday installed Astro MDX integration. Or another integration that uses MDX, you need to make sure that the codeblocks integration comes before MDX in the integrations array. Otherwise, it will not work.
 
  ## Usage
 
  With the integration installed, the <CodeBlock> component will automatically be imported and applied ot the code blocks you create in your `.mdx` files.
+
+ ### Add a title to your code block
+
+You can add a title to your code block by adding a `title` prop to the code block
+
+```mdx
+    ```js title="myscript.js"
+        console.log('Hello World')
+    ```
+```
+> **Note**
+> The title prop is optional. If you don't add it, the code block will not have a title.
+
+
