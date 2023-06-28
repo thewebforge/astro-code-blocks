@@ -107,26 +107,29 @@ You can highlight strings in your code block by adding a prop to the code blocks
 - `/astro/` will highlight all occurences of "astro"
 - `/\w*$/` will highlight the last word of each line
 
-```sh /astro/
-# Using NPM
-npx astro add @thewebforge/astro-code-blocks
-# Using Yarn
-yarn astro add @thewebforge/astro-code-blocks
-# Using PNPM
-pnpm astro add @thewebforge/astro-code-blocks
+```mdx
+  ```sh /astro/
+  # Using NPM
+  npx astro add @thewebforge/astro-code-blocks
+  # Using Yarn
+  yarn astro add @thewebforge/astro-code-blocks
+  # Using PNPM
+  pnpm astro add @thewebforge/astro-code-blocks
+  ```
 ```
 
 ### Insertions and Deletions
 
 You can highlight insertions and deletions in your code block by adding `ins` and/or `del` props to the code blocks as a list of lines in curly brackets. For example:
 
-```sh ins={3,4} del={5,6}
-# Using NPM
-npx astro add @thewebforge/astro-code-blocks
-# Using Yarn
-yarn astro add @thewebforge/astro-code-blocks
-# Using PNPM
-pnpm astro add @thewebforge/astro-code-blocks
+```mdx
+  ```sh ins={3,4} del={5,6}
+  # Using NPM
+  npx astro add @thewebforge/astro-code-blocks
+  # Using Yarn
+  yarn astro add @thewebforge/astro-code-blocks
+  # Using PNPM
+  pnpm astro add @thewebforge/astro-code-blocks
+  ```
 ```
-
 
