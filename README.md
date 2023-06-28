@@ -1,4 +1,5 @@
 # astro-code-blocks
+
 Beautiful code blocks for your Astro site
 This is a custom version of the integration from Astro Docs
 
@@ -33,3 +34,25 @@ yarn add @thewebforge/astro-code-blocks
 # Using PNPM
 pnpm add @thewebforge/astro-code-blocks
 ```
+
+Next, open your project’s astro.config.mjs file and add the following to the plugins array:
+
+**astro.config.mjs**
+
+```js
+import codeblocks from "@thewebforge/astro-code-blocks";
+
+export default defineConfig({
+  integrations: [
+    codeblocks({
+      copyButtonTitle: 'Copy',
+      copyButtonTooltip: 'Copied to clipboard',
+    }),
+  ],
+});
+```
+> **Note:** If you alreday installed Astro MDX integration. Or another integration that uses MDX, you need to make sure that the codeblocks integration comes before MDX in the integrations array. Otherwise, it will not work.
+
+ ## Usage
+
+ With the integration installed, the <CodeBlock> component will automatically be imported and applied ot the code blocks you create in your `.mdx` files.
