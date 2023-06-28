@@ -13,9 +13,9 @@ import type {
 } from "./utils/user-config";
 import AutoImport from "astro-auto-import";
 import { visit } from "unist-util-visit";
-import { makeComponentNode } from "./utils/makeComponentNode";
-import { theme } from "./utils/syntax-highlighting-theme";
-import { CodeBlocksConfigSchema } from "./utils/user-config";
+import { makeComponentNode } from "./utils/makeComponentNode.js";
+import { theme } from "./utils/syntax-highlighting-theme.js";
+import { CodeBlocksConfigSchema } from "./utils/user-config.js";
 
 const PKG_NAME = "@thewebforge/astro-code-blocks";
 
