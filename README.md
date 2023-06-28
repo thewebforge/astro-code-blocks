@@ -74,11 +74,11 @@ integrations: [
 
 You can add a title to your code block by adding a `title` prop to the code block
 
-```mdx
-    ```js title="myscript.js"
-        console.log('Hello World')
-    ```
+````mdx
+```js title="myscript.js"
+  console.log('Hello World')
 ```
+````
 > **Note**
 > The title prop is optional. If you don't add it, the code block will not have a title.
 
@@ -90,15 +90,15 @@ comma separated numbers in curly brackets. For example:
 - `{1,3}` will highlight lines 1 and 3
 - `{2-5, 7}` will highlight lines 1 to 5(not included) and 7
 
-```mdx
-    ```js {1,3,5}
-        console.log('Hello World')
-        console.log('Hello World')
-        console.log('Hello World')
-        console.log('Hello World')
-        console.log('Hello World')
-    ```
+````mdx
+```js {1,3,5}
+  console.log('Hello World')
+  console.log('Hello World')
+  console.log('Hello World')
+  console.log('Hello World')
+  console.log('Hello World')
 ```
+````
 
 ### Highlight strings
 
@@ -107,29 +107,29 @@ You can highlight strings in your code block by adding a prop to the code blocks
 - `/astro/` will highlight all occurences of "astro"
 - `/\w*$/` will highlight the last word of each line
 
-```mdx
-  ```sh /astro/
+````mdx
+```sh /astro/
   # Using NPM
   npx astro add @thewebforge/astro-code-blocks
   # Using Yarn
   yarn astro add @thewebforge/astro-code-blocks
   # Using PNPM
   pnpm astro add @thewebforge/astro-code-blocks
-  ```
 ```
+````
 
 ### Insertions and Deletions
 
 You can highlight insertions and deletions in your code block by adding `ins` and/or `del` props to the code blocks as a list of lines in curly brackets. For example:
 
-```mdx
-  ```sh ins={3,4} del={5,6}
+````mdx
+```sh ins={3,4} del={5,6}
   # Using NPM
   npx astro add @thewebforge/astro-code-blocks
   # Using Yarn
   yarn astro add @thewebforge/astro-code-blocks
   # Using PNPM
   pnpm astro add @thewebforge/astro-code-blocks
-  ```
 ```
+````
 
