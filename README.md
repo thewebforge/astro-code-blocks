@@ -133,3 +133,23 @@ You can highlight insertions and deletions in your code block by adding `ins` an
 ```
 ````
 
+## Custom CSS
+
+### Override the default Astro styles
+
+__`crazy-code-props.css`__
+```css
+  :root {
+    --astro-code-color-text: white;
+    --astro-code-color-background: black;
+    --astro-code-token-constant: plum;
+    --astro-code-token-string: purple;
+    --astro-code-token-comment: tomato;
+    --astro-code-token-keyword: darkslategrey;
+    --astro-code-token-parameter: coral;
+    --astro-code-token-function: green;
+    --astro-code-token-string-expression: chartreuse;
+    --astro-code-token-punctuation: gray;
+    --astro-code-token-link: firebrick;
+  }
+```

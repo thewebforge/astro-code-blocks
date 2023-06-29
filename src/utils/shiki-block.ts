@@ -30,11 +30,9 @@ export class ShikiBlock {
 
     // Parse inner HTML code to ShikiLine instances
     const innerHtmlLines = innerHtml.split(/\r?\n/);
+    
     this.shikiLines = innerHtmlLines.map((htmlLine) => new ShikiLine(htmlLine));
-
-    // console.log('shikiLines', this.shikiLines);
     this.copyButton = new CopyButton(this.shikiLines, copyButtonArgs);
-    // console.log('copyButton', this.copyButton);
   }
 
   applyMarkings(
@@ -42,7 +40,6 @@ export class ShikiBlock {
     inlineMarkings: InlineMarkingDefinition[]
   ) {
     if (!lineMarkings.length && !inlineMarkings.length) return;
-
     this.shikiLines.forEach((line, i) => {
       // Determine line marker type (if any)
       const matchingDefinitions = lineMarkings.filter((def) =>
@@ -64,7 +61,7 @@ export class ShikiBlock {
   renderToHtml() {
     const linesHtml = this.shikiLines
       .map((line) => {
-        line.ensureTokenColorContrast();
+        // line.ensureTokenColorContrast();
         return line.renderToHtml();
       })
       .join("\n");

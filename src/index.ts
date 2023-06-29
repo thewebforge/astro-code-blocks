@@ -357,7 +357,7 @@ export default function CodeBlocksIntegration(
         parsedConfig.error.issues.map((i) => i.message).join("\n")
     );
   }
-  const userConfig = opts ? parsedConfig.data : {};
+  const userConfig = opts ? parsedConfig : {};
 
   const CodeBlocks: AstroIntegration = {
     name: PKG_NAME,
@@ -370,7 +370,11 @@ export default function CodeBlocksIntegration(
           markdown: {
             remarkPlugins: [remarkCodeSnippets()],
             syntaxHighlight: "shiki",
-            shikiConfig: { theme },
+            shikiConfig:
+              // Configure Shiki theme if the user is using the default github-dark theme.
+              config.markdown.shikiConfig.theme !== 'github-dark'
+                ? {}
+                : { theme: 'css-variables' },
           },
         };
         updateConfig(newConfig);

@@ -137,7 +137,6 @@ function applyMarkings(
 			regExp,
 		};
 	});
-
 	const shikiBlock = new ShikiBlock(highlightedCodeHtml, { copyButtonTitle, copyButtonTooltip });
 	shikiBlock.applyMarkings(lineMarkings, inlineMarkings);
 	return shikiBlock.renderToHtml();
@@ -172,85 +171,64 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 ---
 
 <style lang="scss" is:global>
-	[data-theme='light'] .code-snippet {
-		--theme-code-bg: hsl(var(--sl-hue-accent), 20%, 15%);
-		--theme-code-text: white;
+	.custom-code-block {
+		--_border-color: var(--acb-border-color, var(--sl-color-gray-5));
+		--_border-style: var(--acb-border-style, solid);
+		--_border-width: var(--acb-border-width, 1px);
+		--_border-radius: var(--acb-border-radius, 0);
 
-		--theme-code-mark-bg: var(--sl-color-accent-high);
-		--theme-code-mark-border: var(--sl-color-accent);
-		--theme-code-ins-bg: var(--sl-color-green-high);
-		--theme-code-ins-border: var(--sl-color-green);
-		--theme-code-ins-text: var(--sl-color-green-low);
-		--theme-code-del-bg: var(--sl-color-red-high);
-		--theme-code-del-border: var(--sl-color-red);
-		--theme-code-del-text: var(--sl-color-red-low);
-	}
-	[data-theme='dark'] .code-snippet {
-		--theme-code-bg: hsl(var(--sl-hue-accent), 20%, 7%);;
-		--theme-code-text: hsla(var(--color-base-white), 80%, 1);
-		}
-	.code-snippet {
-		--glow-border: 1px solid var(--sl-color-hairline);
-		--theme-code-selection-bg: hsla(var(--sl-hue-accent), 100%, 50%,  0.4);
-		--theme-code-tabs: var(--theme-code-bg);
+		--_code-background-color: var(--acb-code-background-color, var(--astro-code-color-background));
+		--_code-title-background-color: var(--acb-code-title-background-color, var(--_code-background-color));
+		--_code-title-color: var(--acb-code-title-color, var(--sl-color-text-accent, var(--astro-code-color-text)));
+		--_padding-inline: var(--acb-padding-inline, 1rem);
+
 		--theme-code-mark-bg: var(--sl-color-accent-low);
-		--theme-code-mark-border: var(--sl-color-accent);
-		--theme-code-ins-bg: var(--sl-color-green-low);
-		--theme-code-ins-border: var(--sl-color-green);
-		--theme-code-ins-text: var(--sl-color-green-high);
+		--theme-code-mark-border: var(--sl-color-accent) ;
 		--theme-code-del-bg: var(--sl-color-red-low);
 		--theme-code-del-border: var(--sl-color-red);
-		--theme-code-del-text: var(--sl-color-red-high);
-		--theme-code-padding-block: 1em;
-		position: relative;
+		--theme-code-del-text: var(--sl-color-red);
+		--theme-code-ins-bg: var(--sl-color-green-low);
+		--theme-code-ins-border: var(--sl-color-green);
+		--theme-code-ins-text: var(--sl-color-green);
 
+		position: relative;
 		.header,
 		pre {
-			border: var(--glow-border);
-			border-radius: 0.3rem;
-			line-height: 1.65;
+			border: var(--_border-width) var(--_border-style) var(--_border-color);
+			border-radius: var(--_border-radius);
 		}
 
 		.header {
 			display: none;
 			border-block-end: none;
 			padding: 0.25rem 1rem 0.25rem 1rem;
-			line-height: 1.65;
 			z-index: 1;
 			position: relative;
 			inset-block-start: 1px;
-			background-color: var(--theme-code-tabs);
-			color: hsl(var(--sl-hue-accent), 100%, 87%);
-			font-size: 0.9rem;
-			font-weight: 500;
+			background-color: var(--_code-title-background-color);
+			color: var(--_code-title-color);
+			font-size: 0.9em;
+			font-weight: 400;
 			letter-spacing: 0.025ch;
 			border-end-start-radius: 0;
 			border-end-end-radius: 0;
 		}
 
 		pre {
-			margin: 0;
-			padding: var(--theme-code-padding-block) 0;
-			background-color: var(--theme-code-bg) !important;
-			box-shadow: 0 0 var(--theme-glow-blur) var(--theme-glow-diffuse);
-			border: var(--glow-border) !important;
-
+			background-color: var(--_code-background-color)!important;
 			& > code {
-				all: unset;
 				display: inline-block;
 				min-inline-size: 100%;
-				--padding-inline: 1.25rem;
 
 				& > .line {
 					--accent-margin: 0rem;
 					display: inline-block;
 					min-inline-size: calc(100% - var(--accent-margin));
-					padding-inline-start: var(--padding-inline);
-					padding-inline-end: calc(2 * var(--padding-inline));
+					padding-inline-start: var(--_padding-inline);
+					padding-inline-end: calc(2 * var(--_padding-inline));
 
 					& span {
 						position: relative;
-
 						// This pseudo-element makes the background color of empty lines visible
 						&.empty::before {
 							content: ' ';
@@ -262,16 +240,16 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 					&.ins,
 					&.del {
 						--accent-margin: 0rem;
-						--accent-width: 0.15rem;
+						--accent-width: 0.2rem;
 						background: var(--line-marker-bg-color);
 						margin-inline-start: var(--accent-margin);
 						border-inline-start: var(--accent-width) solid var(--line-marker-border-color);
 						padding-inline-start: calc(
-							var(--padding-inline) - var(--accent-margin) - var(--accent-width)
+							var(--_padding-inline) - var(--accent-margin) - var(--accent-width)
 						) !important;
 						&::before {
 							position: absolute;
-							inset-inline-start: 0.5rem;
+							inset-inline-start: 0.25rem;
 						}
 					}
 					&.mark {
@@ -340,8 +318,8 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 				border: 1px solid var(--sl-color-gray-4);
 				padding: 0.375rem;
 				align-self: flex-end;
-				background-color: var(--theme-code-bg);
-				color: white;
+				background-color: var(--sl-color-gray-5);
+				color: var(--sl-color-gray-3);
 
 				@media (hover: hover) {
 					& {
@@ -372,13 +350,12 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 
 		.copy-button-tooltip {
 			--tooltip-arrow-size: 0.375rem;
-			--tooltip-bg: hsl(var(--sl-hue-accent), 20%, 20%);
+			--tooltip-bg: var(--sl-color-gray-5);
 			display: none;
 			position: relative;
 			align-self: center;
 			background-color: var(--tooltip-bg);
 			color: var(--sl-color-green);
-			font-size: var(--theme-text-sm);
 			padding: 0.125rem 0.5rem;
 			border-radius: 0.3rem;
 			margin: 0;
@@ -398,7 +375,7 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 			}
 		}
 		&.has-title {
-			--code-header-height: 2rem;
+			--code-header-height: 2.2rem;
 
 			& .header {
 				display: inline-block;
@@ -411,9 +388,7 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 		}
 
 		&.is-terminal {
-			--theme-glow-highlight: rgba(255, 255, 255, 0.2);
-			--theme-glow-diffuse: rgba(0, 0, 0, 0.4);
-			--code-header-height: 1.75rem;
+			--code-header-height: 2.1rem;
 
 			& .header {
 				display: flex;
@@ -424,7 +399,7 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 				position: relative;
 
 				&::before {
-					content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 16' preserveAspectRatio='xMidYMid meet' fill='rgba(255, 255, 255, 0.15)'%3E%3Ccircle cx='8' cy='8' r='8'/%3E%3Ccircle cx='30' cy='8' r='8'/%3E%3Ccircle cx='52' cy='8' r='8'/%3E%3C/svg%3E");
+					content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 16' preserveAspectRatio='xMidYMid meet' fill='rgba(150, 150, 150, 10)'%3E%3Ccircle cx='8' cy='8' r='8'/%3E%3Ccircle cx='30' cy='8' r='8'/%3E%3Ccircle cx='52' cy='8' r='8'/%3E%3C/svg%3E");
 					position: absolute;
 					left: 1rem;
 					width: 2.1rem;
@@ -447,7 +422,7 @@ function parseMarkingDefinition(serializedArr: string, parts: RegExp, parseError
 </style>
 <figure
 	class:list={[
-		'code-snippet',
+		'custom-code-block',
 		isTerminal && 'is-terminal',
 		titleHtml && 'has-title',
 		`lang-${lang}`,
